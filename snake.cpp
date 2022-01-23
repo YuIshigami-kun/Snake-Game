@@ -172,7 +172,7 @@ void GenObs(){
 			if(px[i] == x || py[i] == y) keep = true;
 	 	}	
 		
-		for(int i = 0; i < obsCount; i += 2){
+		for(int i = 0; i < obsCount*2; i += 2){
 			if(obs[i] == x || obs[i + 1] == y) keep = true;
 		}
 		
@@ -196,7 +196,9 @@ void GenFruit(){
 			if(px[i] == fx || py[i] == fy) keep = true;
 		}
 		
-		
+		for(int i = 0; i < obsCount*2; i += 2){
+			if(obs[i] == fx || obs[i + 1] == fy) keep = true;
+		}
 	}
 }
 
@@ -222,11 +224,14 @@ void Draw(){
 			dead = true;
 			return;
 		}
-		
-		result.replace((width*py[i]) + py[i] + px[i], 1, "O");
+		if(i == 0){
+			result.replace((width*py[i]) + py[i] + px[i], 1, "o");
+		}else{
+			result.replace((width*py[i]) + py[i] + px[i], 1, "O");
+		}
 	}	
 	
-	for(int i = 0; i < obsCount; i += 2){
+	for(int i = 0; i < obsCount*2; i += 2){
 		result.replace((width * obs[i + 1]) + obs[i + 1] + obs[i], 2, "##");
 		result.replace((width * (obs[i + 1] + 1)) + obs[i + 1] + 1 + obs[i], 2, "##");
 	}
